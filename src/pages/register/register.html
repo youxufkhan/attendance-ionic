@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Register</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    
+    <ion-list>
+  
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input [(ngModel)]="user.username" type="text" value=""></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Company</ion-label>
+        <ion-input [(ngModel)]="user.company" type="text" value=""></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>E mail</ion-label>
+        <ion-input [(ngModel)]="user.email" type="email" value=""></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input [(ngModel)]="user.name" type="text" value=""></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input [(ngModel)]="user.password" type="password"></ion-input>
+      </ion-item>
+  
+    </ion-list>
+  
+    <button ion-button secondary (click)="register()">Register</button>
+      <br>
+    <button ion-button secondary menuToggle>Toggle Menu</button>
+  </ion-content>
+  
