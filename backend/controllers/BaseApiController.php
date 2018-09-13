@@ -26,6 +26,7 @@ class BaseApiController extends ActiveController {
                 'Access-Control-Expose-Headers' => ['X-Pagination-Page-Count', 'X-Pagination-Current-Page'],
             ],
         ];
+        return $behaviors;
     }
 
     public function verifyMandatoryParameters($mandatoryParameters)

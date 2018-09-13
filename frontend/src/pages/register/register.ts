@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { HttpClient } from '@angular/common/http';
+import { NavController, ToastController } from 'ionic-angular';
 import { UserModel } from '../../app/model/user.model';
+import { UserService } from '../../app/service/user.service';
 
 
 
@@ -14,18 +14,25 @@ export class RegisterPage {
 
   user= new UserModel();
 
-  constructor(public navCtrl: NavController, public http: HttpClient) {
+  constructor(public navCtrl: NavController, public service: UserService, public toastCtrl: ToastController) {
 
   }
 
   register(){
-    
-    var url = "http://localhost/basic/web/index.php?r=user/create"
-    this.http.post(url,this.user)
-      .subscribe(res => {
-        console.log(res)
-      }, (err) => {
-        console.log(err);
-      });
+    let toast = this.toastCtrl.create({
+      message: 'User was added successfully',
+      duration: 3000,
+      position: 'top'
+    });
+    this.service.createUser(this.user).subscribe(response=>{
+      console.log(response)
+      toast.present()
+    }),(error=>{
+      console.log(error)
+      toast.setMessage('error')
+      toast.present()
+
+    })
   }
+    
 }

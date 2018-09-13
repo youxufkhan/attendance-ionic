@@ -10,6 +10,7 @@ namespace app\controllers;
 
 use app\models\User;
 use app\models\Users;
+use yii\db\Exception;
 use yii\web\UnauthorizedHttpException;
 
 class UserController extends BaseApiController {
@@ -22,32 +23,37 @@ class UserController extends BaseApiController {
     }
 
     public function actionCreate(){
-        echo 'here';die;
         $data = \Yii::$app->request->post();
         if(!$this->verifyMandatoryParameters(['password','username', 'name'])){
-            throw new Exception('Invalid Parameters');
+            throw new \Exception('Invalid Parameters');
         }
-        $user = User::findByUsername($data['username']);
+        $user = Users::findByUsername($data['username']);
         if($user){
-            throw new Exception('Username already exists');
+            throw new \Exception('Username already exists');
         }
         $user = new Users();
         $user->load($data,"");
-        $user->password = Yii::$app->security->generatePasswordHash($data['password']);
-        if(!$user->save()){
-            throw new Exception('Database Exception',1003,new Exception(json_encode($user->errors),1003));
-        }
+        $user_count = Users::find()->count();
+        if($user_count == 0){
+            $user->type = 2;
+        }else{
+            $user->type = 1;
 
+        }
+        $user->password = \Yii::$app->security->generatePasswordHash($data['password']);
+        if(!$user->save()){
+            throw new \Exception('Database Exception');
+        }
     }
 
     public function actionLogin(){
         $data = \Yii::$app->request->post();
-        if(!$this->verifyMandatoryParameters(['email','password'])){
-            throw new Exception('Invalid Parameters');
+        if(!$this->verifyMandatoryParameters(['username','password'])){
+            throw new \Exception('Invalid Parameters');
         }
         $user = Users::findByUsername($data['username']);
         if(!$user){
-            throw new Exception('Invalid Parameters');
+            throw new \Exception('User does not exist');
         }
         if($user->validatePassword($data['password'])){
             return $user;

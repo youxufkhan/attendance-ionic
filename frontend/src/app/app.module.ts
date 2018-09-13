@@ -11,6 +11,8 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { RegisterPage } from '../pages/register/register';
+import { UserService } from './service/user.service';
+import { BaseService } from './service/base.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { RegisterPage } from '../pages/register/register';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BaseService,UserService,
   ]
 })
 export class AppModule {}
