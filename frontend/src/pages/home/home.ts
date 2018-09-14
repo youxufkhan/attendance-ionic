@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
+import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+
 import { RegisterPage } from '../register/register';
 import { UserService } from '../../app/service/user.service';
 import { UserModel } from '../../app/model/user.model';
@@ -10,10 +12,18 @@ import { UserModel } from '../../app/model/user.model';
 })
 export class HomePage {
 
+  form :FormGroup;
   user = new UserModel();
 
-  constructor(public navCtrl: NavController, public service: UserService, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public service: UserService, public toastCtrl: ToastController, private formBuilder: FormBuilder) {
+    this.initializeForm();
+  }
 
+  initializeForm(){
+    this.form = this.formBuilder.group({
+      username: [this.user.username,Validators.required],
+      password: [this.user.password,Validators.required]
+    })
   }
 
   login(){
@@ -27,6 +37,7 @@ export class HomePage {
       // toast.setMessage(response)
       toast.present()
     }),(error=>{
+      console.log('here')
       toast.setMessage(error)
       toast.present()
     })

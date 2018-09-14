@@ -36,9 +36,10 @@ class UserController extends BaseApiController {
         $user_count = Users::find()->count();
         if($user_count == 0){
             $user->type = 2;
+            $user->approved = 1;
         }else{
             $user->type = 1;
-
+            $user->approved = 0;
         }
         $user->password = \Yii::$app->security->generatePasswordHash($data['password']);
         if(!$user->save()){
@@ -49,7 +50,8 @@ class UserController extends BaseApiController {
     public function actionLogin(){
         $data = \Yii::$app->request->post();
         if(!$this->verifyMandatoryParameters(['username','password'])){
-            throw new \Exception('Invalid Parameters');
+            throw new Exception('Required parameters missing', null, 1022);
+
         }
         $user = Users::findByUsername($data['username']);
         if(!$user){
