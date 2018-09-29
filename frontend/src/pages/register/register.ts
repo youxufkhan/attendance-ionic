@@ -27,7 +27,7 @@ export class RegisterPage {
     this.service.createUser(this.user).subscribe(response=>{
       console.log(response)
       toast.present()
-    }),(error=>{
+    },(error)=>{
       console.log(error)
       toast.setMessage('error')
       toast.present()

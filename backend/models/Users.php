@@ -70,4 +70,20 @@ class Users extends \yii\db\ActiveRecord
     }
 
 
+    public function approve(){
+        $this->approved = 1;
+        $this->save();
+        return $this;
+    }
+
+    public function disapprove(){
+        $this->approved = 1;
+        $this->save();
+        return $this;
+    }
+
+    public function splicePassword(){
+        $this->password = null;
+        return $this;
+    }
 }

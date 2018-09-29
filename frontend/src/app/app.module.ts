@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { RegisterPage } from '../pages/register/register';
 import { UserService } from './service/user.service';
 import { BaseService } from './service/base.service';
+import { AdminCPPage } from '../pages/admincp/admincp';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { BaseService } from './service/base.service';
     HomePage,
     ListPage,
     RegisterPage,
+    AdminCPPage
     
   ],
   imports: [
@@ -33,7 +35,8 @@ import { BaseService } from './service/base.service';
     MyApp,
     HomePage,
     ListPage,
-    RegisterPage
+    RegisterPage,
+    AdminCPPage
   ],
   providers: [
     StatusBar,

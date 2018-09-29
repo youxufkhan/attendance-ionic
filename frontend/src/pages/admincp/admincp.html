@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar hideBackButton >
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Users List</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+    
+    <ion-grid>
+        <ion-row>
+          <ion-col>
+            Username
+          </ion-col>
+          <ion-col>
+            Name
+          </ion-col>
+          <ion-col>
+            Email
+          </ion-col>
+        </ion-row>
+        <ion-row *ngFor="let user of users">
+            <ion-col>
+                {{user.username}}
+            </ion-col>
+            <ion-col>
+                {{user.name}}
+            </ion-col>
+            <ion-col>
+                {{user.email}}
+            </ion-col>
+            <ion-col>
+              <span *ngIf="!user.approved"><a href="javascript:void(0)" (click)="approveUser(user.id)">Approve</a></span>
+              <span *ngIf="user.approved"><a href="javascript:void(0)" (click)="disapproveUser(user.id)">Terminate</a></span>
+          </ion-col>
+          </ion-row>
+      </ion-grid>
+      
+    
+      <br>
+    <button ion-button secondary menuToggle>Toggle Menu</button>
+  </ion-content>
+  

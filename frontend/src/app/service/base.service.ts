@@ -13,8 +13,11 @@ export class BaseService {
     public expands = "";
     
     public Urls = {
+        user:'user',
         user_create: 'user/create',
-        user_login: 'user/login'
+        user_login: 'user/login',
+        user_approve:'user/approve',
+        user_disapprove:'user/disapprove',
     }
 
     constructor(protected http: HttpClient) {
@@ -53,6 +56,22 @@ export class BaseService {
         .map((response) => {
             return response;
         });
+    }
+
+    public List(page=1,per_page=10,filters:any = null){
+        var query = '';
+        if (filters != null){
+            for(var filter in filters){
+            if(filters[filter]){
+                query += `&${filter}=${ encodeURIComponent(filters[filter])}`
+            }
+        };
+        }
+        return this.http.get(`${this.baseUrl}${this.url}&expand=${this.expands}&per-page=${per_page}&page=${page}${query}`).map(
+            (response)=>{
+                return response;
+            }
+        )
     }
 
 

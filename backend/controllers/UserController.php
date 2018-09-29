@@ -35,10 +35,10 @@ class UserController extends BaseApiController {
         $user->load($data,"");
         $user_count = Users::find()->count();
         if($user_count == 0){
-            $user->type = 2;
+            $user->type = 2; // Type 2 is admin i.e employer
             $user->approved = 1;
         }else{
-            $user->type = 1;
+            $user->type = 1; //Type 1 is normal user i.e employee
             $user->approved = 0;
         }
         $user->password = \Yii::$app->security->generatePasswordHash($data['password']);
@@ -58,11 +58,29 @@ class UserController extends BaseApiController {
             throw new \Exception('User does not exist');
         }
         if($user->validatePassword($data['password'])){
-            return $user;
+            return $user->splicePassword();
         } else {
-            throw new UnauthorizedHttpException();
+            throw new \Exception("Wrong Username or Password");
         }
 
+    }
+
+
+
+    public function actionApprove($user_id){
+        $user = Users::findOne($user_id);
+        if(!$user){
+            throw new \Exception("No such User");
+        }
+        return $user->approve();
+    }
+
+    public function actionDisapprove($user_id){
+        $user = Users::findOne($user_id);
+        if(!$user){
+            throw new \Exception("No such User");
+        }
+        return $user->disapprove();
     }
 
 

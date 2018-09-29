@@ -5,6 +5,7 @@ import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { RegisterPage } from '../register/register';
 import { UserService } from '../../app/service/user.service';
 import { UserModel } from '../../app/model/user.model';
+import { AdminCPPage } from '../admincp/admincp';
 
 @Component({
   selector: 'page-home',
@@ -28,17 +29,26 @@ export class HomePage {
 
   login(){
     let toast = this.toastCtrl.create({
-      message: 'User was added successfully',
-      duration: 3000,
+      duration: 2000,
       position: 'top'
     });
     this.service.login(this.user).subscribe(response=>{
-      console.log(response)
-      // toast.setMessage(response)
+    if(response.type == 2){
+      toast.setMessage("Successfully Logged In")
+      console.log(response.type)
+      setTimeout(()=>{
+        this.navCtrl.push(AdminCPPage);
+      },1000)
       toast.present()
-    }),(error=>{
-      console.log('here')
-      toast.setMessage(error)
+    }else{
+      toast.setMessage("Sorry")
+      toast.present()
+    }
+      
+      
+      
+    },(error)=>{
+      toast.setMessage(error.error.message)
       toast.present()
     })
   }
