@@ -4,6 +4,7 @@ import { NavController, ToastController } from 'ionic-angular';
 import { UserService } from '../../app/service/user.service';
 import { FormBuilder } from '@angular/forms';
 import { AdminCPPage } from '../admincp/admincp';
+import { UserPanelPage } from '../userpanel/userpanel';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class HomePage {
         this.service.View(logged_in_user_id).subscribe(res=>{
           if(res.type == 2){
             this.navCtrl.push(AdminCPPage)
+          }else{
+            this.navCtrl.push(UserPanelPage)
           }
         })
       }

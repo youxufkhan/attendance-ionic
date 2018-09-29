@@ -6,6 +6,7 @@ import { RegisterPage } from '../register/register';
 import { UserService } from '../../app/service/user.service';
 import { UserModel } from '../../app/model/user.model';
 import { AdminCPPage } from '../admincp/admincp';
+import { UserPanelPage } from '../userpanel/userpanel';
 /**
  * Generated class for the LoginPage page.
  *
@@ -45,22 +46,21 @@ export class LoginPage {
       position: 'top'
     });
     this.service.login(this.user).subscribe(response=>{
-    if(response.type == 2){
       toast.setMessage("Successfully Logged In")
-      console.log(response.type)
       localStorage.setItem('logged_in_username',response.username)
       localStorage.setItem('logged_in_user_id',response.id)
+    if(response.type == 2){
       setTimeout(()=>{
         this.navCtrl.push(AdminCPPage);
-      },1000)
-      toast.present()
+      },500)
     }else{
-      toast.setMessage("Sorry")
-      toast.present()
+      setTimeout(()=>{
+        this.navCtrl.push(UserPanelPage);
+      },500)
     }
+    toast.present()
       
-      
-      
+       
     },(error)=>{
       toast.setMessage(error.error.message)
       toast.present()
