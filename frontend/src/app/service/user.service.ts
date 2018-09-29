@@ -13,7 +13,7 @@ export class UserService  extends BaseService {
       }
 
     public createUser(user){
-        return this.http.post(`${this.baseUrl}${this.Urls.user_create}`,user)
+        return this.http.post<any>(`${this.baseUrl}${this.Urls.user_create}`,user)
 
     }
     
@@ -24,11 +24,11 @@ export class UserService  extends BaseService {
     }
     
     public approve(userID){
-        return this.http.get(`${this.baseUrl}${this.Urls.user_approve}&user_id=${userID}`)
+        return this.http.get<any>(`${this.baseUrl}${this.Urls.user_approve}&user_id=${userID}`)
         
     }
     public disapprove(userID){
-        return this.http.get(`${this.baseUrl}${this.Urls.user_disapprove}&user_id=${userID}`)
+        return this.http.get<any>(`${this.baseUrl}${this.Urls.user_disapprove}&user_id=${userID}`)
         
     }
 

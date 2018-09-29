@@ -58,4 +58,10 @@ export class AdminCPPage {
     })
   }
     
+  logOut(){
+    localStorage.removeItem('logged_in_user_id')
+    localStorage.removeItem('logged_in_username')
+    this.navCtrl.pop()
+
+  }
 }

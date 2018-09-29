@@ -29,14 +29,14 @@ export class BaseService {
     
     public Create($model){
         $model.status = $model.status ? 1 : 0
-        return this.http.post(`${this.baseUrl}${this.url}/create`,$model)
+        return this.http.post<any>(`${this.baseUrl}${this.url}/create`,$model)
         .map((response: Response) => {
             return response.json();
         });
     }
 
     public View(id){
-        return this.http.get(`${this.baseUrl}${this.url}/view&id=${id}&expand=${this.expands}`).map(
+        return this.http.get<any>(`${this.baseUrl}${this.url}/view&id=${id}&expand=${this.expands}`).map(
             (response)=>{
                 return response;
             }
@@ -45,7 +45,7 @@ export class BaseService {
 
     public Update($model){
         $model.status = $model.status ? 1 : 0
-        return this.http.put(`${this.baseUrl}${this.url}/update&id=${$model.id}`,$model)
+        return this.http.put<any>(`${this.baseUrl}${this.url}/update&id=${$model.id}`,$model)
         .map((response: Response) => {
             return response.json();
         });

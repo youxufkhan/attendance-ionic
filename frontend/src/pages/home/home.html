@@ -1,33 +1,10 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content padding>
-  
-  <form [formGroup]="form" (ngSubmit)="login(user)">
-    <ion-list>
-
-      <ion-item>
-        <ion-label floating>Username</ion-label>
-        <ion-input [(ngModel)]="user.username" formControlName="username" type="text"></ion-input>
-      </ion-item>
-      
-    
-      <ion-item>
-        <ion-label floating>Password</ion-label>
-        <ion-input [(ngModel)]="user.password" formControlName="password" type="password"></ion-input>
-      </ion-item>
-
-    </ion-list>
-  
-  <button ion-button secondary type="submit">Login</button>
-</form>
-<button ion-button color="danger" (click)="register()">Register</button>
-    <br>
-  <button ion-button secondary menuToggle>Toggle Menu</button>
-</ion-content>
+<page-login></page-login>

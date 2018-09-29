@@ -14,6 +14,7 @@ import { RegisterPage } from '../pages/register/register';
 import { UserService } from './service/user.service';
 import { BaseService } from './service/base.service';
 import { AdminCPPage } from '../pages/admincp/admincp';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AdminCPPage } from '../pages/admincp/admincp';
     HomePage,
     ListPage,
     RegisterPage,
-    AdminCPPage
+    AdminCPPage,
+    LoginPage
     
   ],
   imports: [
@@ -36,7 +38,8 @@ import { AdminCPPage } from '../pages/admincp/admincp';
     HomePage,
     ListPage,
     RegisterPage,
-    AdminCPPage
+    AdminCPPage,
+    LoginPage
   ],
   providers: [
     StatusBar,
