@@ -77,7 +77,7 @@ class Users extends \yii\db\ActiveRecord
     }
 
     public function disapprove(){
-        $this->approved = 1;
+        $this->approved = 0;
         $this->save();
         return $this;
     }

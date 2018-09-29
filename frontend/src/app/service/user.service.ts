@@ -19,7 +19,7 @@ export class UserService  extends BaseService {
     
 
     public login(user){
-        return this.http.post<Response>(`${this.baseUrl}${this.Urls.user_login}`,user)
+        return this.http.post<any>(`${this.baseUrl}${this.Urls.user_login}`,user)
         
     }
     

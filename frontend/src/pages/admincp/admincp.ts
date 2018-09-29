@@ -14,6 +14,7 @@ export class AdminCPPage {
 
   user= new UserModel();
   users : any
+  is_loaded =false;
 
   toast = this.toastCtrl.create({
     message: '',
@@ -28,7 +29,6 @@ export class AdminCPPage {
   loadData(){
     this.service.List().subscribe(response=>{
       this.users = response;
-      this.users = this.users.slice()
   })
   }
 
