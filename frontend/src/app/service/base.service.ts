@@ -14,10 +14,14 @@ export class BaseService {
     
     public Urls = {
         user:'user',
+        attendance:'attendance',
         user_create: 'user/create',
         user_login: 'user/login',
         user_approve:'user/approve',
         user_disapprove:'user/disapprove',
+        time_in:'attendance/time-in',
+        time_out:'attendance/time-out',
+        user_attendance:'attendance/user-attendance'
     }
 
     constructor(protected http: HttpClient) {

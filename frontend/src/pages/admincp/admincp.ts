@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { UserModel } from '../../app/model/user.model';
 import { UserService } from '../../app/service/user.service';
+import { ViewattendancePage } from '../viewattendance/viewattendance';
 
 
 
@@ -64,4 +65,9 @@ export class AdminCPPage {
     this.navCtrl.pop()
 
   }
+
+  viewAttendance(user_id){
+    this.navCtrl.push(ViewattendancePage,{userID:user_id})
+  }
+
 }

@@ -24,6 +24,9 @@
           <ion-col>
             Email
           </ion-col>
+          <ion-col>
+              App/Dis
+          </ion-col>
         </ion-row>
         <ion-row *ngFor="let user of users">
             <ion-col>
@@ -38,6 +41,9 @@
             <ion-col>
               <span *ngIf="!user.approved"><a href="javascript:void(0)" (click)="approveUser(user.id)">Approve</a></span>
               <span *ngIf="user.approved"><a href="javascript:void(0)" (click)="disapproveUser(user.id)">Terminate</a></span>
+          </ion-col>
+          <ion-col>
+              <button ion-button (click)="viewAttendance(user.id)">View Attendance</button>
           </ion-col>
           </ion-row>
       </ion-grid>

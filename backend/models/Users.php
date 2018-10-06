@@ -15,6 +15,8 @@ use Yii;
  * @property int $type
  * @property int $approved
  * @property string $created_at
+ *
+ * @property Attendance $attendance[]
  */
 class Users extends \yii\db\ActiveRecord
 {
@@ -57,6 +59,11 @@ class Users extends \yii\db\ActiveRecord
             'approved' => 'Approved',
             'created_at' => 'Created At',
         ];
+    }
+
+    public function getAttendance()
+    {
+        return $this->hasMany(Attendance::className(), ['user_id' => 'id']);
     }
 
     public function validatePassword($password)

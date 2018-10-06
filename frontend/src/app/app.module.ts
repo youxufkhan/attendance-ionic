@@ -16,6 +16,8 @@ import { BaseService } from './service/base.service';
 import { AdminCPPage } from '../pages/admincp/admincp';
 import { LoginPage } from '../pages/login/login';
 import { UserPanelPage } from '../pages/userpanel/userpanel';
+import { AttendanceService } from './service/attendance.service';
+import { ViewattendancePage } from '../pages/viewattendance/viewattendance';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,7 @@ import { UserPanelPage } from '../pages/userpanel/userpanel';
     ListPage,
     RegisterPage,
     AdminCPPage,
-    LoginPage,UserPanelPage
+    LoginPage,UserPanelPage,ViewattendancePage
     
   ],
   imports: [
@@ -40,13 +42,13 @@ import { UserPanelPage } from '../pages/userpanel/userpanel';
     ListPage,
     RegisterPage,
     AdminCPPage,
-    LoginPage,UserPanelPage
+    LoginPage,UserPanelPage,ViewattendancePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BaseService,UserService,
+    BaseService,UserService,AttendanceService
   ]
 })
 export class AppModule {}
