@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 
 import { UserService } from '../../app/service/user.service';
-import { FormBuilder } from '@angular/forms';
+// import { FormBuilder } from '@angular/forms';
 import { AdminCPPage } from '../admincp/admincp';
 import { UserPanelPage } from '../userpanel/userpanel';
 
@@ -22,7 +22,16 @@ export class HomePage {
           if(res.type == 2){
             this.navCtrl.push(AdminCPPage)
           }else{
+            if(res.approved){
             this.navCtrl.push(UserPanelPage)
+            }else{
+              let toast = this.toastCtrl.create({
+                duration: 2000,
+                position: 'top'
+              });
+              toast.setMessage('You are not approved, Contact Administrator')
+              toast.present()
+            }
           }
         })
       }

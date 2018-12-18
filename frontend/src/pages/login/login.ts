@@ -54,9 +54,14 @@ export class LoginPage {
         this.navCtrl.push(AdminCPPage);
       },500)
     }else{
-      setTimeout(()=>{
-        this.navCtrl.push(UserPanelPage);
-      },500)
+      if(response.approved){
+        setTimeout(()=>{
+          this.navCtrl.push(UserPanelPage);
+        },500)
+      }else{
+        toast.setMessage("You are not approved, contact Admin")
+        toast.present()
+      }
     }
     toast.present()
       

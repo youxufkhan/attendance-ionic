@@ -17,11 +17,7 @@ export class AdminCPPage {
   users : any
   is_loaded =false;
 
-  toast = this.toastCtrl.create({
-    message: '',
-    duration: 3000,
-    position: 'top'
-  });
+  
 
   constructor(public navCtrl: NavController, public service: UserService, public toastCtrl: ToastController) {
     this.loadData();
@@ -34,28 +30,36 @@ export class AdminCPPage {
   }
 
   approveUser(user_id){
-    
+    let toast = this.toastCtrl.create({
+      message: '',
+      duration: 3000,
+      position: 'top'
+    });
     this.service.approve(user_id).subscribe(response=>{
-      this.toast.setMessage('user Approved')
-      this.toast.present()
+      toast.setMessage('user Approved')
+      toast.present()
       this.loadData()
     },(error)=>{
       console.log(error)
-      this.toast.setMessage('error')
-      this.toast.present()
+      toast.setMessage('error')
+      toast.present()
     })
   }
 
   disapproveUser(user_id){
-    
+    let toast = this.toastCtrl.create({
+      message: '',
+      duration: 3000,
+      position: 'top'
+    });
     this.service.disapprove(user_id).subscribe(response=>{
-      this.toast.setMessage('user Terminated')
-      this.toast.present()
+      toast.setMessage('user Terminated')
+      toast.present()
       this.loadData()
     },(error)=>{
       console.log(error)
-      this.toast.setMessage('error')
-      this.toast.present()
+      toast.setMessage('error')
+      toast.present()
     })
   }
     

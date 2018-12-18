@@ -18,14 +18,12 @@ export class UserPanelPage {
   timed_in = false;
   user_id;
   userAttendance;
-  toast = this.toastCtrl.create({
-    duration: 2000,
-    position: 'top'
-  });
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private service: AttendanceService, private toastCtrl: ToastController) {
     this.user_id = localStorage.getItem('logged_in_user_id');
     this.loadData()
+    
   }
 
   getUsername(){
@@ -55,24 +53,33 @@ export class UserPanelPage {
   }
 
   timeIn(){
+    let toast = this.toastCtrl.create({
+      duration: 2000,
+      position: 'top'
+    });
     this.service.timeIn(this.user_id).subscribe(res=>{
       console.log(res)
 
       if(res.time_in){
-        this.toast.setMessage('Timed In')
-        this.toast.present()
+        toast.setMessage('Timed In')
+        toast.present()
       }
       this.loadData()
     })
   }
 
   timeOut(){
+
     this.service.timeOut(this.user_id).subscribe(res=>{
+      let toast = this.toastCtrl.create({
+        duration: 2000,
+        position: 'top'
+      });
       console.log(res)
 
       if(res.time_out){
-        this.toast.setMessage('Timed Out')
-        this.toast.present()
+        toast.setMessage('Timed Out')
+        toast.present()
         
       }
       this.loadData()
